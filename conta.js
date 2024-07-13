@@ -1,7 +1,14 @@
+const prompt = require('prompt-sync')();
+
 class Conta {
     constructor(titular, saldo){
         this.saldo = saldo;
         this.titular = titular;
+    }
+
+    criarConta(){
+        this.titular = prompt('Digite o nome do titular da conta: ');
+        this.saldo = 0;
     }
 
     depositar(valor){
@@ -13,10 +20,6 @@ class Conta {
     }
 
     apresentarSaldo(){
-        if(!this.saldo){
-            this.saldo = 0;
-        }
-
         const formatCurrency = new Intl.NumberFormat('pt-Br', {
             style: 'currency',
             currency: 'BRL'
