@@ -12,11 +12,11 @@ class Conta {
     }
 
     depositar(valor){
-
+        this.saldo += valor;
     }
 
     sacar(valor){
-
+        this.saldo -= valor;
     }
 
     apresentarSaldo(){

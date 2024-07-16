@@ -9,12 +9,23 @@ class ContaPoupanca extends Conta{
 
     criarConta(){
         this.titular = prompt('Digite o nome do titular da conta: ');
-        this.saldo = 2;
+        this.saldo = 0;
         this.rendimento = prompt('Digite o rendimento desta conta poupança:');
     }
 
-    aplicarRendimento(){
+    aplicarRendimento(valor){
+        let resultado = valor + (valor * (this.rendimento / 100));
 
+        return resultado;
+    }
+
+    depositar(valor){
+        let valorComJuros = this.aplicarRendimento(valor);
+        this.saldo += valorComJuros;
+    }
+
+    sacar(valor){
+        this.saldo -= valor;
     }
 
     apresentarSaldo(){

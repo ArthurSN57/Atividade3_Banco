@@ -10,6 +10,13 @@ const contaPoupanca = new ContaPoupanca();
 
 // Apresentação do banco e menu de opções de interação.
 function montarMenu(){
+    let contas = {
+        "1": contaCorrente,
+        "2": contaPoupanca,
+        "3": conta
+    }
+
+    let tipoConta;
     let continuarOperacoes = true;
     while(continuarOperacoes){
         console.log(' ');
@@ -23,56 +30,42 @@ function montarMenu(){
         let acaoSelecionada = prompt('Digite a ação a ser executada:');
         let valor = 0;
 
-        console.log(' ');
-        console.log('Opções de Conta:');
-        console.log('1 - Conta Corrente');
-        console.log('2 - Conta Poupança');
-        console.log('3 - Conta Genérica');
-        let tipoConta = prompt('Digite o número referente a opção de conta a ser utilizada:');
+        if(acaoSelecionada != 5){
+            console.log(' ');
+            console.log('Opções de Conta:');
+            console.log('1 - Conta Corrente');
+            console.log('2 - Conta Poupança');
+            console.log('3 - Conta Genérica');
+            tipoConta = prompt('Digite o número referente a opção de conta a ser utilizada:');
+        }
 
         switch(acaoSelecionada){
             case "1":
-                if(tipoConta == "1"){
-                    contaCorrente.criarConta();
-                } else if(tipoConta == "2"){
-                    contaPoupanca.criarConta();
-                } else if(tipoConta == "3"){
-                    conta.criarConta();
+                if(tipoConta >= 1 || tipoConta <= 3){
+                    contas[tipoConta].criarConta();
                 } else {
                     throw new Error('Opção selecionada incorreta!');
                 }
                 break;
             case "2":
                 valor = parseFloat(prompt('Digite o valor que deseja depositar:'));
-                if(tipoConta == "1"){
-                    contaCorrente.depositar(valor);
-                } else if(tipoConta == "2"){
-                    contaPoupanca.depositar(valor);
-                } else if(tipoConta == "3"){
-                    conta.depositar(valor);
+                if(tipoConta >= 1 || tipoConta <= 3){
+                    contas[tipoConta].depositar(valor);
                 } else {
                     throw new Error('Opção selecionada incorreta!');
                 }
                 break;
             case "3":
                 valor = parseFloat(prompt('Digite o valor que deseja sacar:'));
-                if(tipoConta == "1"){
-                    contaCorrente.sacar(valor);
-                } else if(tipoConta == "2"){
-                    contaPoupanca.sacar(valor);
-                } else if(tipoConta == "3"){
-                    conta.sacar(valor);
+                if(tipoConta >= 1 || tipoConta <= 3){
+                    contas[tipoConta].sacar(valor);
                 } else {
                     throw new Error('Opção selecionada incorreta!');
                 }
                 break;
             case "4":
-                if(tipoConta == "1"){
-                    contaCorrente.apresentarSaldo();
-                } else if(tipoConta == "2"){
-                    contaPoupanca.apresentarSaldo();
-                } else if(tipoConta == "3"){
-                    conta.apresentarSaldo();
+                if(tipoConta >= 1 || tipoConta <= 3){
+                    contas[tipoConta].apresentarSaldo();
                 } else {
                     throw new Error('Opção selecionada incorreta!');
                 }
